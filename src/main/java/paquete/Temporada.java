@@ -1,12 +1,24 @@
 package paquete;
 
 import java.util.TreeSet;
+
 import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Temporada {
-
+	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private int numeroTemporada;
 	// TreeSet para que esten ordenados los capitulos
+	@OneToMany
 	private Set<Capitulo> capitulos = new TreeSet<Capitulo>();
 	
 	public Temporada(int numeroTemporada, Set<Capitulo> capitulos) {
@@ -27,7 +39,7 @@ public class Temporada {
 	public void setCapitulos(Set<Capitulo> capitulos) {
 		this.capitulos = capitulos;
 	}
-	//añade un capitulo a la temporada
+	//aï¿½ade un capitulo a la temporada
 	public boolean nuevoCapitulo(Capitulo c) {
 		return capitulos.add(c);
 	}

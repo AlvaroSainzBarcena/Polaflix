@@ -11,6 +11,11 @@ public class Actor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
 	private String nombre;
 	private String apellidos;
 	

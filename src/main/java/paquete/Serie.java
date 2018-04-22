@@ -3,26 +3,41 @@ package paquete;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+@Entity
 public class Serie {
-
-	private final int id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	@OneToOne
 	private Categoria categoria;
 	private String nombreSerie;
 	private char inicial; //Letra inicial del nombre de la serie
 	
+	@ManyToMany
 	private Set<Creador> creadores = new HashSet<Creador>();
 	// TreeSet para que esten ordenadas las temporadas
+	
+	@OneToMany
 	private Set<Temporada> temporadas = new TreeSet<Temporada>();
+	@OneToMany
 	private Set<Actor> actoresPrincipales = new HashSet<Actor>();
 	
-	// TODO ¿Es necesario que la serie tenga capitulos, si ya tiene temporadas?
+	// TODO ï¿½Es necesario que la serie tenga capitulos, si ya tiene temporadas?
+	@OneToMany
 	private Set<Capitulo> capitulos = new HashSet<Capitulo>();
 	
-	public Serie(int id, Categoria categoria, String nombreSerie, char inicial, Set<Creador> creadores,
+	public Serie(Categoria categoria, String nombreSerie, char inicial, Set<Creador> creadores,
 			Set<Temporada> temporadas, Set<Actor> actoresPrincipales, Set<Capitulo> capitulos) {
 		super();
-		this.id = id;
 		this.categoria = categoria;
 		this.nombreSerie = nombreSerie;
 		this.inicial = inicial;
@@ -75,7 +90,7 @@ public class Serie {
 	public void setCreadores(Set<Creador> creadores) {
 		this.creadores = creadores;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	

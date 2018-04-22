@@ -1,7 +1,16 @@
 package paquete;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Creador {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String nombre;
 	private String apellidos;
 	
@@ -21,6 +30,10 @@ public class Creador {
 	}
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 	
 }

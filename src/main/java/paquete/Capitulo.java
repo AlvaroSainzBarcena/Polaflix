@@ -1,12 +1,24 @@
 package paquete;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Capitulo {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private int numeroCapitulo;
 	private String titulo;
 	private String descripcion;
 	private String enlace;
+	@ManyToOne
 	private Serie serie;
+	@ManyToOne
 	private Temporada temporada;
 	
 	public Capitulo(int numeroCapitulo, String titulo, String descripcion, String enlace,
@@ -57,4 +69,7 @@ public class Capitulo {
 		this.temporada = temporada;
 	}
 
+	public Long getId() {
+		return id;
+	}
 }
