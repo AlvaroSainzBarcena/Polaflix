@@ -2,6 +2,7 @@ package paquete;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Polaflix {
@@ -9,7 +10,7 @@ public class Polaflix {
 	// todos los usuarios de la plataforme
 	Set<Usuario> usuarios = new HashSet<Usuario>();
 	// quiero las series ordenadas alfabeticamente-> TreeSet
-	Set<Serie> series = new TreeSet<Serie>();
+	SortedSet<Serie> series = new TreeSet<Serie>();
 	// todos los actores
 	Set<Actor> actores = new HashSet<Actor>();
 	// todos los creadores
@@ -120,7 +121,7 @@ public class Polaflix {
 	public Set<Serie> getSeries() {
 		return series;
 	}
-	public void setSeries(Set<Serie> series) {
+	public void setSeries(SortedSet<Serie> series) {
 		this.series = series;
 	}
 	public Set<Actor> getActores() {

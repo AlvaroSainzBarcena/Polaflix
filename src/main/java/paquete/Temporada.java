@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Temporada {
 	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

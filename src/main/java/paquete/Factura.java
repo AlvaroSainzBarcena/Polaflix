@@ -4,16 +4,29 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Factura {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	private int numeroFactura;
 	private Date fecha;
 	private double importeTotal;
+	@ManyToOne
 	private Usuario usuario;
+	@OneToMany
 	private Set<Visualizacion> visualizaciones=new HashSet<Visualizacion>();
 	
-	public Factura(int id, Date fecha, double importeTotal, Usuario usuario) {
-		this.id = id;
+	public Factura(int numeroFactura, Date fecha, double importeTotal, Usuario usuario) {
+		this.numeroFactura = numeroFactura;
 		this.fecha = fecha;
 		this.importeTotal = importeTotal;
 		this.usuario = usuario;
@@ -46,12 +59,16 @@ public class Factura {
 		this.usuario = usuario;
 	}
 	
-	public int getId() {
+	public int getNumeroFactura() {
+		return numeroFactura;
+	}
+	public void setNumeroFactura(int numeroFactura) {
+		this.numeroFactura = numeroFactura;
+	}
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -72,6 +89,7 @@ public class Factura {
 	public void setVisualizaciones(Set<Visualizacion> visualizaciones) {
 		this.visualizaciones = visualizaciones;
 	}
+	
 	
 
 }

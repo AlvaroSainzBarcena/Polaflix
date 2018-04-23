@@ -21,11 +21,9 @@ public class Serie {
 	private Categoria categoria;
 	private String nombreSerie;
 	private char inicial; //Letra inicial del nombre de la serie
-	
 	@ManyToMany
 	private Set<Creador> creadores = new HashSet<Creador>();
 	// TreeSet para que esten ordenadas las temporadas
-	
 	@OneToMany
 	private Set<Temporada> temporadas = new TreeSet<Temporada>();
 	@OneToMany
