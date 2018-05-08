@@ -44,7 +44,7 @@ public class Usuario {
 	@OrderBy("fecha")
 	private SortedSet<Factura> facturasTotales = new TreeSet<Factura>();
 
-	
+	public Usuario(){}
 	//TODO ¿Verificar que el nombre del usuario no existe y el formato de ISBAN es correcto aqui?
 	public Usuario(String nombreUsuario, String contraseña, String cuentaBancaria, boolean cuotaFija) {
 		this.nombreUsuario = nombreUsuario;
