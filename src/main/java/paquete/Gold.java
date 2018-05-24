@@ -7,12 +7,20 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value="Gold")
 public class Gold extends Categoria {
 
-	private final static double precio = 1.5;
+	private static double precio = 1.5;
 	
+	public static void setPrecio(double precio) {
+		Gold.precio = precio;
+	}
+
 	public Gold() {
 		
 		super(precio);
 		
+	}
+
+	public double getPrecio() {
+		return precio;
 	}
 
 }

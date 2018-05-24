@@ -7,8 +7,16 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value="Silver")
 public class Silver extends Categoria {
 
-	private final static double precio = 0.75;
+	private static double precio = 0.75;
 	
+	public double getPrecio() {
+		return precio;
+	}
+
+	public static void setPrecio(double precio) {
+		Silver.precio = precio;
+	}
+
 	public Silver() {
 		
 		super(precio);

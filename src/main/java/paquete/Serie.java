@@ -32,6 +32,8 @@ public class Serie {
 	@OneToMany
 	private Set<Capitulo> capitulos = new HashSet<Capitulo>();
 	
+	public Serie() {}
+	
 	public Serie(Categoria categoria, String nombreSerie, Set<Creador> creadores,
 			Set<Temporada> temporadas, Set<Actor> actoresPrincipales, Set<Capitulo> capitulos) {
 		super();
