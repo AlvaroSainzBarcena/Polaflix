@@ -1,0 +1,12 @@
+{
+  "name": "angular-simpleWeb",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A version of the simple web using Angular components",
+  "scripts": {
+    "start": "http-server . -a localhost -p 8000 -c-1"
+  },
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
