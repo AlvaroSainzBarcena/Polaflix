@@ -1,8 +1,9 @@
-package paquete;
+package entidadesDominio;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Factura {
 	@ManyToOne
 	private Usuario usuario;
 	@OneToMany
-	private Set<Visualizacion> visualizaciones=new HashSet<Visualizacion>();
+	private List<Visualizacion> visualizaciones=new ArrayList<Visualizacion>();
 	
 	public Factura(int numeroFactura, Date fecha, double importeTotal, Usuario usuario) {
 		this.numeroFactura = numeroFactura;
@@ -49,6 +50,26 @@ public class Factura {
 		
 		if(!usuario.isCuotaFija())
 			importeTotal=importeTotal+capi.getSerie().getCategoria().getPrecio();	
+	}
+	
+	@Override
+	public int hashCode() {
+		
+		return Objects.hash(numeroFactura, fecha, importeTotal, usuario, visualizaciones);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		if (o == this) return true;
+		if (!(o instanceof Factura)) {
+			return false;
+		}
+
+		Factura fac = (Factura) o;
+		return Objects.equals(numeroFactura, fac.numeroFactura) && Objects.equals(fecha, fac.fecha) 
+				&& Objects.equals(importeTotal, fac.importeTotal) && Objects.equals(usuario, fac.usuario)
+				&& Objects.equals(visualizaciones, fac.visualizaciones);
 	}
 
 	public Usuario getUsuario() {
@@ -82,11 +103,11 @@ public class Factura {
 		this.importeTotal = importeTotal;
 	}
 
-	public Set<Visualizacion> getVisualizaciones() {
+	public List<Visualizacion> getVisualizaciones() {
 		return visualizaciones;
 	}
 
-	public void setVisualizaciones(Set<Visualizacion> visualizaciones) {
+	public void setVisualizaciones(List<Visualizacion> visualizaciones) {
 		this.visualizaciones = visualizaciones;
 	}
 	

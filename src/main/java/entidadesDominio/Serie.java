@@ -1,6 +1,7 @@
-package paquete;
+package entidadesDominio;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.persistence.Entity;
@@ -45,6 +46,27 @@ public class Serie {
 		this.actoresPrincipales = actoresPrincipales;
 		this.capitulos = capitulos;
 	}
+	
+	@Override
+	public int hashCode() {
+		
+		return Objects.hash(categoria, nombreSerie, creadores, temporadas, actoresPrincipales, capitulos);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		if (o == this) return true;
+		if (!(o instanceof Serie)) {
+			return false;
+		}
+
+		Serie serie = (Serie) o;
+		return Objects.equals(categoria, serie.categoria) && Objects.equals(nombreSerie, serie.nombreSerie) 
+				&& Objects.equals(creadores, serie.creadores) && Objects.equals(temporadas, serie.temporadas)
+				&& Objects.equals(actoresPrincipales, serie.actoresPrincipales) && Objects.equals(capitulos, serie.capitulos);
+	}
+	
 	public Set<Capitulo> getCapitulos() {
 		return capitulos;
 	}

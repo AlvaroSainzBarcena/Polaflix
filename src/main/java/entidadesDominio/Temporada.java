@@ -1,7 +1,7 @@
-package paquete;
+package entidadesDominio;
 
 import java.util.TreeSet;
-
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +24,24 @@ public class Temporada {
 	
 		this.numeroTemporada = numeroTemporada;
 		this.capitulos = capitulos;
+	}
+	
+	@Override
+	public int hashCode() {
+		
+		return Objects.hash(numeroTemporada, capitulos);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		if (o == this) return true;
+		if (!(o instanceof Temporada)) {
+			return false;
+		}
+
+		Temporada temp = (Temporada) o;
+		return Objects.equals(numeroTemporada, temp.numeroTemporada) && Objects.equals(capitulos, temp.capitulos);
 	}
 	
 	public int getNumeroTemporada() {

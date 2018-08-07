@@ -1,4 +1,6 @@
-package paquete;
+package entidadesDominio;
+
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +25,25 @@ public class Visualizacion {
 		this.fechaVisualizacion=fecha;
 		this.factura=factura;
 
+	}
+	
+	@Override
+	public int hashCode() {
+		
+		return Objects.hash(capitulo, fechaVisualizacion, factura);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		if (o == this) return true;
+		if (!(o instanceof Visualizacion)) {
+			return false;
+		}
+
+		Visualizacion vis = (Visualizacion) o;
+		return Objects.equals(capitulo, vis.capitulo) && Objects.equals(fechaVisualizacion, vis.fechaVisualizacion)
+				&& Objects.equals(factura, vis.factura);
 	}
 
 	public Capitulo getCapitulo() {

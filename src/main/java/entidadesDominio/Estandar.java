@@ -1,4 +1,6 @@
-package paquete;
+package entidadesDominio;
+
+import java.util.Objects;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -20,6 +22,23 @@ public class Estandar extends Categoria {
 	public Estandar() {
 		super(precio);
 		
+	}
+	
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(precio);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+
+		if (o == this) return true;
+		if (!(o instanceof Estandar)) {
+			return false;
+		}
+
+		return Objects.equals(precio, Estandar.precio);
 	}
 
 }
