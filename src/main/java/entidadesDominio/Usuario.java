@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
@@ -25,17 +26,17 @@ public class Usuario {
 
 	// En este Mapa se guarda el ultimo capitulo de cada serie. No ordenados->Hash
 	// La llave es la Serie
-	@OneToMany
+	@ManyToMany
 	private Map<Serie,Capitulo> ultimoCapitulo = new HashMap<Serie,Capitulo>();
 	// En este conjunto estaran los capitulos que se hayan visto para mostrarlo cuando se vaya
 	// a visualizar un capitulo de una serie.
-	@OneToMany
+	@ManyToMany
 	private Set<Capitulo> capitulosVisualizados = new HashSet<Capitulo>();
-	@OneToMany
+	@ManyToMany
 	private Set<Serie> seriesPendientes = new HashSet<Serie>();
-	@OneToMany
+	@ManyToMany
 	private Set<Serie> seriesTerminadas = new HashSet<Serie>();
-	@OneToMany
+	@ManyToMany
 	private Set<Serie> seriesEmpezadas = new HashSet<Serie>();
 
 	// Conviene que esten ordenadas segun el mes

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -21,12 +22,12 @@ public class Serie {
 	private Categoria categoria;
 	private String nombreSerie;
 	private char inicial; //Letra inicial del nombre de la serie
-	@OneToMany
+	@ManyToMany
 	private Set<Creador> creadores = new HashSet<Creador>();
 	// TreeSet para que esten ordenadas las temporadas
 	@OneToMany
 	private Set<Temporada> temporadas = new TreeSet<Temporada>();
-	@OneToMany
+	@ManyToMany
 	private Set<Actor> actoresPrincipales = new HashSet<Actor>();
 	
 	// TODO ¿Es necesario que la serie tenga capitulos, si ya tiene temporadas?
