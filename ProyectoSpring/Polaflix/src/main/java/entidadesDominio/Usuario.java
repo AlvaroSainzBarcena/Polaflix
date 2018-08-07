@@ -1,10 +1,11 @@
-package paquete;
+package entidadesDominio;
 
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
 import javax.persistence.Entity;
@@ -72,8 +73,34 @@ public class Usuario {
 
 		ultimoCapitulo.put(s, c);
 	}
+	
+	@Override
+	public int hashCode() {
+		
+		return Objects.hash(nombreUsuario, contraseña, cuentaBancaria, cuotaFija, ultimoCapitulo, capitulosVisualizados, 
+				seriesPendientes, seriesTerminadas, seriesEmpezadas, facturasTotales);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		if (o == this) return true;
+		if (!(o instanceof Usuario)) {
+			return false;
+		}
 
-	// a�adir una serie empezada
+		Usuario user = (Usuario) o;
+		return Objects.equals(nombreUsuario, user.nombreUsuario) && Objects.equals(contraseña, user.contraseña) 
+				&& Objects.equals(cuentaBancaria, user.cuentaBancaria) && Objects.equals(cuotaFija, user.cuotaFija)
+				&& Objects.equals(ultimoCapitulo, user.ultimoCapitulo) 
+				&& Objects.equals(capitulosVisualizados, user.capitulosVisualizados)
+				&& Objects.equals(seriesPendientes, user.seriesPendientes) 
+				&& Objects.equals(seriesTerminadas, user.seriesTerminadas)
+				&& Objects.equals(seriesEmpezadas, user.seriesEmpezadas) 
+				&& Objects.equals(facturasTotales, user.facturasTotales);
+	}
+
+	// anhadir una serie empezada
 	public boolean nuevaSerieEmpezada(Serie s) {
 
 		return seriesEmpezadas.add(s);

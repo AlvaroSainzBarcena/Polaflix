@@ -1,4 +1,4 @@
-package paquete;
+package entidadesDominio;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
