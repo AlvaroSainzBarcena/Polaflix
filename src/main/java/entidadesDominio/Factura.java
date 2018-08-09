@@ -23,7 +23,7 @@ public class Factura {
 	private double importeTotal;
 	@ManyToOne
 	private Usuario usuario;
-	@OneToMany
+	@OneToMany(mappedBy="factura")
 	private List<Visualizacion> visualizaciones=new ArrayList<Visualizacion>();
 	
 	public Factura(int numeroFactura, Date fecha, double importeTotal, Usuario usuario) {

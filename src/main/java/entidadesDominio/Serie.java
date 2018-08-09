@@ -31,7 +31,7 @@ public class Serie {
 	private Set<Actor> actoresPrincipales = new HashSet<Actor>();
 	
 	// TODO ¿Es necesario que la serie tenga capitulos, si ya tiene temporadas?
-	@OneToMany
+	@OneToMany(mappedBy="serie")
 	private Set<Capitulo> capitulos = new HashSet<Capitulo>();
 	
 	public Serie() {}

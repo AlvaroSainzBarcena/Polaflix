@@ -42,7 +42,7 @@ public class Usuario {
 	// Conviene que esten ordenadas segun el mes
 	// muchas operaciones que necesitan el ultimo elemento insterado (ultima factura)
 	// metodo last() devuelve la factura "mas grande". TODO: Implementar el comparteTo en funcion de la fecha
-	@OneToMany
+	@OneToMany(mappedBy="usuario")
 	@OrderBy("fecha")
 	private SortedSet<Factura> facturasTotales = new TreeSet<Factura>();
 

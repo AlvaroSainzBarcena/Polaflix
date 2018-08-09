@@ -17,7 +17,7 @@ public class Temporada {
 	private Long id;
 	private int numeroTemporada;
 	// TreeSet para que esten ordenados los capitulos
-	@OneToMany
+	@OneToMany(mappedBy="temporada")
 	private Set<Capitulo> capitulos = new TreeSet<Capitulo>();
 	
 	public Temporada(int numeroTemporada, Set<Capitulo> capitulos) {
