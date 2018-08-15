@@ -16,6 +16,8 @@ public class Creador {
 	private String nombre;
 	private String apellidos;
 	
+	public Creador() {};
+	
 	public Creador(String nombre, String apellidos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;

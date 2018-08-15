@@ -12,8 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+
 @Entity
-public class Serie {
+public class Serie{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -25,12 +26,11 @@ public class Serie {
 	@ManyToMany
 	private Set<Creador> creadores = new HashSet<Creador>();
 	// TreeSet para que esten ordenadas las temporadas
-	@OneToMany
+	@OneToMany(mappedBy="serie")
 	private Set<Temporada> temporadas = new TreeSet<Temporada>();
 	@ManyToMany
 	private Set<Actor> actoresPrincipales = new HashSet<Actor>();
-	
-	// TODO ¿Es necesario que la serie tenga capitulos, si ya tiene temporadas?
+
 	@OneToMany(mappedBy="serie")
 	private Set<Capitulo> capitulos = new HashSet<Capitulo>();
 	
@@ -101,6 +101,18 @@ public class Serie {
 	public void setTemporadas(Set<Temporada> temporadas) {
 		this.temporadas = temporadas;
 	}
+	
+	public Temporada getTemporadaById(int id) {
+		
+		for(Temporada t: temporadas) {
+			if(t.getNumeroTemporada()==id){
+				return t;
+			}	
+		}
+		
+		return null;
+	}
+	
 	public Set<Actor> getActoresPrincipales() {
 		return actoresPrincipales;
 	}

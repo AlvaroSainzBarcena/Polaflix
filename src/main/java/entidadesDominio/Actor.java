@@ -21,6 +21,8 @@ public class Actor {
 	private String nombre;
 	private String apellidos;
 
+	public Actor() {};
+	
 	public Actor(String nombre, String apellidos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;

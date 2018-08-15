@@ -16,7 +16,7 @@ import entidadesDominio.Usuario;
 import repositorios.UsuarioRepository;
 
 @RestController
-@RequestMapping("/{nombreUsuario}")
+@RequestMapping("/usuarios/{nombreUsuario}")
 public class UsuarioRestController{
 
 	private final UsuarioRepository userRepository;

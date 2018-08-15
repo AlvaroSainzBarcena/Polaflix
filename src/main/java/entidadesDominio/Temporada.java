@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -19,6 +20,11 @@ public class Temporada {
 	// TreeSet para que esten ordenados los capitulos
 	@OneToMany(mappedBy="temporada")
 	private Set<Capitulo> capitulos = new TreeSet<Capitulo>();
+	
+	@ManyToOne
+	private Serie serie;
+	
+	public Temporada() {};
 	
 	public Temporada(int numeroTemporada, Set<Capitulo> capitulos) {
 	

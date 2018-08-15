@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Capitulo {
+public class Capitulo{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,6 +22,8 @@ public class Capitulo {
 	private Serie serie;
 	@ManyToOne
 	private Temporada temporada;
+	
+	public Capitulo() {};
 	
 	public Capitulo(int numeroCapitulo, String titulo, String descripcion, String enlace,
 			Serie serie, Temporada temporada) {

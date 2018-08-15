@@ -23,7 +23,7 @@ public class PolaflixApplication {
 		SpringApplication.run(PolaflixApplication.class, args);
 	}
 	// Para probar, lo ejecuta al principio
-
+	/**
 	@Bean
 	CommandLineRunner init(UsuarioRepository userRepo) {
 		return (evt) -> Arrays.asList(
