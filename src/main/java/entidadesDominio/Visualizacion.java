@@ -1,5 +1,6 @@
 package entidadesDominio;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -9,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Visualizacion {
+public class Visualizacion implements Serializable{
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8286519085556042710L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

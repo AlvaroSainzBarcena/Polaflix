@@ -1,29 +1,55 @@
 package entidadesDominio;
 
 import java.util.TreeSet;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Temporada {
+public class Temporada implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1818507950005212864L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private int numeroTemporada;
 	// TreeSet para que esten ordenados los capitulos
 	@OneToMany(mappedBy="temporada")
+	@JsonIgnore
 	private Set<Capitulo> capitulos = new TreeSet<Capitulo>();
 	
-	public Temporada(int numeroTemporada, Set<Capitulo> capitulos) {
+	@ManyToOne
+	@JsonIgnore
+	private Serie serie;
 	
+	public Temporada() {};
+	
+	public Temporada(int numeroTemporada, Set<Capitulo> capitulos) {
+		
 		this.numeroTemporada = numeroTemporada;
 		this.capitulos = capitulos;
+	}
+	
+	public Capitulo getCapByNumCap(int num) {
+		
+		for(Capitulo c: capitulos) {
+			if(c.getNumeroCapitulo()== num) {
+				return c;
+			}
+		}
+		
+		return null;
 	}
 	
 	@Override

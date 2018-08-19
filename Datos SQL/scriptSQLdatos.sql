@@ -10,6 +10,11 @@ insert into serie values(1,'P','Prison Break',3);
 insert into serie values(2,'B','Breaking Bad',2);
 insert into serie values(3,'V','Vikings',1);
 
+#Se me olvido el atributo SINOPSIS
+UPDATE `esquema_polaflix`.`serie` SET `sinopsis`='Sinopsis de Prison Break' WHERE `id`='1';
+UPDATE `esquema_polaflix`.`serie` SET `sinopsis`='Sinpsis de Breaking Bad' WHERE `id`='2';
+UPDATE `esquema_polaflix`.`serie` SET `sinopsis`='Sinopsis de Vikings' WHERE `id`='3';
+
 insert into creador values(1,'Scheuring','Paul'); #Creador de Prison Break
 insert into creador values(2,'Gilligan','Vince'); #Creador de Breaking Bad
 insert into creador values(3,'Hirst','Michael'); #Creador de Vikings

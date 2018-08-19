@@ -1,6 +1,8 @@
 package entidadesDominio;
 
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
@@ -16,8 +18,13 @@ import javax.persistence.OrderBy;
 
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable{
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3666425692470711384L;
 	@Id
 	private String nombreUsuario;
 	private String contraseña;
@@ -47,7 +54,6 @@ public class Usuario {
 	private SortedSet<Factura> facturasTotales = new TreeSet<Factura>();
 
 	public Usuario(){}
-	//TODO ¿Verificar que el nombre del usuario no existe y el formato de ISBAN es correcto aqui?
 	public Usuario(String nombreUsuario, String contraseña, String cuentaBancaria, boolean cuotaFija) {
 		this.nombreUsuario = nombreUsuario;
 		this.contraseña = contraseña;
@@ -56,16 +62,36 @@ public class Usuario {
 	}
 
 	// El usuario visualiza un capitulo
-	//TODO ¿Este metodo va bien aqui, o mejor en la clase Polaflix?
 	public void nuevoCapiVisualizado(Capitulo capi) {
 
-		capitulosVisualizados.add(capi); // Si ya estaba visto, no se volvera a a�adir al conjunto
+		capitulosVisualizados.add(capi); // Si ya estaba visto, no se volvera a anhadir al conjunto
 		Serie serie=capi.getSerie();
 		marcaUltimoCapi(capi, serie); // marcamos el ultimo capitulo visualizado de la serie
 
-		Factura actual =  facturasTotales.last(); //
-		actual.nuevaVisualizacion(capi); //añadimos la visualizacion a la factura		
+		if(facturasTotales.isEmpty()) { // Si no hay facturas aun
+			
+			Date fechaActual=new Date();
+			int numFactura = 0;
+			double importeTotal=0;
+			Factura fac = new Factura(numFactura,fechaActual, importeTotal, this); // creamos la primera factura
+			fac.nuevaVisualizacion(capi); //añadimos la visualizacion a la factura	
+			
+		}else { // Si ya hay facturas
+			Factura actual =  facturasTotales.last(); //
+			actual.nuevaVisualizacion(capi); //añadimos la visualizacion a la factura		
+		}
+	}
 
+	// Devuelve la factura con la fecha indicada
+	public Factura muestraFacturaPorFecha(int anio, int mes) {
+
+		for(Factura f: facturasTotales) {
+			if(f.getFecha().getYear()==anio && f.getFecha().getMonth()==mes) {
+				return f;
+			}
+		}
+
+		return null;
 	}
 
 	// Marca el ultimo capitulo visto de la serie, 
@@ -74,17 +100,17 @@ public class Usuario {
 
 		ultimoCapitulo.put(s, c);
 	}
-	
+
 	@Override
 	public int hashCode() {
-		
+
 		return Objects.hash(nombreUsuario, contraseña, cuentaBancaria, cuotaFija, ultimoCapitulo, capitulosVisualizados, 
 				seriesPendientes, seriesTerminadas, seriesEmpezadas, facturasTotales);
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		
+
 		if (o == this) return true;
 		if (!(o instanceof Usuario)) {
 			return false;
@@ -104,25 +130,50 @@ public class Usuario {
 	// anhadir una serie empezada
 	public boolean nuevaSerieEmpezada(Serie s) {
 
-		return seriesEmpezadas.add(s);
+		if(seriesPendientes.contains(s)) {
+			seriesPendientes.remove(s);
+		}
+
+		if(seriesTerminadas.contains(s)) {
+			seriesTerminadas.remove(s);
+		}
+
+		return seriesEmpezadas.add(s); // retorna falso si ya existe
 	}
 	// eliminar una serie empezada
 	public boolean eliminaSerieEmpezada(Serie s) {
 
 		return seriesEmpezadas.remove(s);
 	}
-	// a�adir una serie pendiente
+	// anhadir una serie pendiente
 	public boolean nuevaSeriePendiente(Serie s) {
 
-		return seriesPendientes.add(s);
+		if(seriesTerminadas.contains(s)) {
+			seriesTerminadas.remove(s);
+		}
+
+		if(seriesEmpezadas.contains(s)) {
+			seriesEmpezadas.remove(s);
+		}
+
+		return seriesPendientes.add(s); // retorna falso si ya existe
 	}
 	// eliminar una serie pendiente
 	public boolean eliminaSeriePendiente(Serie s) {
 
 		return seriesPendientes.remove(s);
 	}
-	// a�adir una serie terminada
+	// anhadir una serie terminada
 	public boolean nuevaSerieTerminada(Serie s) {
+
+		if(seriesPendientes.contains(s)) {
+			seriesPendientes.remove(s);
+		}
+
+		if(seriesEmpezadas.contains(s)) {
+			seriesEmpezadas.remove(s);
+		}
+
 
 		return seriesTerminadas.add(s);
 	}

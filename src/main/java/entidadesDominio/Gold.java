@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value="Gold")
 public class Gold extends Categoria {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -684584366904611310L;
 	private static double precio = 1.5;
 	
 	public static void setPrecio(double precio) {

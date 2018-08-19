@@ -1,5 +1,6 @@
 package entidadesDominio;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,8 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Actor {
+public class Actor implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5627938176387355118L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

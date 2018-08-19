@@ -1,5 +1,6 @@
 package entidadesDominio;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,9 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Capitulo{
+public class Capitulo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9098201823073040443L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -19,8 +26,10 @@ public class Capitulo{
 	private String descripcion;
 	private String enlace;
 	@ManyToOne
+	@JsonIgnore
 	private Serie serie;
 	@ManyToOne
+	@JsonIgnore
 	private Temporada temporada;
 	
 	public Capitulo() {};
