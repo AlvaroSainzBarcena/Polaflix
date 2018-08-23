@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Polaflix</title>
+  <!-- Título de la pestaña -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.00">
+  <link rel="stylesheet" href="PantallaPrincipal.css">
+  <!-- Link al css -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!-- Link al routing -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+  <!-- Link al Angular -->
+  <script src="Polaflix(Angular).js"></script>
+  
+</head>
+
+<body ng-app="PantallaPrincipal">
+  <div class="padreTitulo">
+    <h1 class="header">
+      <div ng-controller="Usuario" class="logo">Polaflix </div>
+      Bienvenido {{usuario.nombreUsuario}}</h1>
+  </div>
+  <div class="menu">
+    <a href="#!PantallaPrincipal">Inicio</a>
+    <a href="#!AgregarSerie">Agregar serie</a>
+    <a href="#!VerCargos">Ver cargos</a>
+  </div>
+
+  <!-- Contenedor del routing. Aqui el contenido de las paginas -->
+  <div class="ng-view"> </div>  
+
+</body>
+
+</html>

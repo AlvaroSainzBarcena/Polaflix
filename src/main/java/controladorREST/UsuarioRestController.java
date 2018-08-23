@@ -6,6 +6,7 @@ import java.util.SortedSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class UsuarioRestController{
 
 	// Devuelve el usuario con el nombre especificado
 	@RequestMapping(method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:8000")
 	Usuario muestraUsuario(@PathVariable String nombreUsuario) {
 		this.validaUsuario(nombreUsuario);
 		return this.userRepository.findById(nombreUsuario).get();//devuelve el usuario con el get(). El findById devuelte
