@@ -3,9 +3,9 @@
       <strong>Empezadas</strong>
     </div>
     <ul class="contenidoEmpezadas">
-        <div class="bodyContainer" ng-controller="polaflixController">
-            <li ng-repeat="entry in seriesEmpezadas">
-                <a>{{entry.name}}</a>
+        <div ng-controller="muestraSeriesPrincipal">
+            <li ng-repeat="serie in seriesEmpezadas">
+                <a href="#!VerSerie" ng-click="verSerieFun(serie)"> {{serie.nombreSerie}}</a>
             </li>
         </div>
     </ul>
@@ -16,8 +16,11 @@
       <strong>Pendientes</strong>
     </div>
     <ul class="contenidoPendientes">
-      <li>Prison break</li>
-      <li>Breaking bad</li>
+        <div ng-controller="muestraSeriesPrincipal">
+            <li ng-repeat="serie in seriesPendientes">
+                <a>{{serie.nombreSerie}}</a>
+            </li>
+        </div>
     </ul>
   </div>
 
@@ -27,7 +30,10 @@
       <strong>Terminadas</strong>
     </div>
     <ul class="contenidoTerminadas">
-      <li>Prison break</li>
-      <li>Breaking bad</li>
+       <div ng-controller="muestraSeriesPrincipal"> 
+          <li ng-repeat="serie in seriesTerminadas">
+            <a>{{serie.nombreSerie}}</a>
+          </li>
+       </div>
     </ul>
   </div>

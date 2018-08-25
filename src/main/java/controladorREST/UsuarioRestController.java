@@ -73,6 +73,7 @@ public class UsuarioRestController{
 
 	// Devuelve la lista de series pendientes del usuario
 	@RequestMapping(value="seriesPendientes", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:8000")
 	Set<Serie> muestraPendientes(@PathVariable String nombreUsuario) {
 		this.validaUsuario(nombreUsuario);
 
@@ -100,6 +101,7 @@ public class UsuarioRestController{
 
 	// Devuelve la lista de series empezadas del usuario
 	@RequestMapping(value="seriesEmpezadas", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:8000")
 	Set<Serie> muestraEmpezadas(@PathVariable String nombreUsuario) {
 		this.validaUsuario(nombreUsuario);
 
@@ -127,6 +129,7 @@ public class UsuarioRestController{
 
 	// Devuelve la lista de series terminadas del usuario
 	@RequestMapping(value="seriesTerminadas", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:8000")
 	Set<Serie> muestraTerminadas(@PathVariable String nombreUsuario) {
 		this.validaUsuario(nombreUsuario);
 
@@ -153,6 +156,7 @@ public class UsuarioRestController{
 	
 	// Devuelve la factura del usuario en funcion de la fecha especificada
 	@RequestMapping(value="facturas/{anio}/{mes}", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:8000")
 	public Factura muestraFactura(@PathVariable String nombreUsuario, @PathVariable int anio, @PathVariable int mes) {
 		this.validaUsuario(nombreUsuario);
 		Usuario u= userRepository.findById(nombreUsuario).get();

@@ -17,9 +17,9 @@
 </head>
 
 <body ng-app="PantallaPrincipal">
-  <div class="padreTitulo">
+  <div class="padreTitulo" ng-controller="userController">
     <h1 class="header">
-      <div ng-controller="Usuario" class="logo">Polaflix </div>
+      <div class="logo">Polaflix </div>
       Bienvenido {{usuario.nombreUsuario}}</h1>
   </div>
   <div class="menu">
