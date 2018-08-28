@@ -1,1 +1,19 @@
-<p>Contenedor de AgregarSerie</p>
+<div ng-controller="controllerAgregarSerie">
+
+    <div class="letras" ng-repeat="letra in letras">
+        <a ng-click="muestraSeriesInicial(letra)" href> {{letra}}</a>
+
+    </div>
+
+    <div class="seriesInicial">
+        {{seriesInicial}}
+    </div>
+
+
+    <div class="abajo">
+        <p> Todas las series de la plataforma: </p>
+        <li ng-repeat="serie in series">
+            {{serie.nombreSerie}}
+        </li>
+    </div>
+</div>

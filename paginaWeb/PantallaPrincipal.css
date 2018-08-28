@@ -67,3 +67,22 @@
 .bloqueTerminadas {
 	padding: 0.4em;
 }
+
+.letras{
+	float: left;
+	padding: 0.8em;
+}
+
+[class=letras] a {
+	padding-right: 1.5em;
+}
+
+.seriesInicial{
+	float: left;
+}
+
+.abajo{
+	position: absolute; 
+	bottom:0;
+	margin-bottom: 3em;
+}
