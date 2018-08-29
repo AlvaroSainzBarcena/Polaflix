@@ -38,8 +38,6 @@
 	border-color: black;
 }
 
-
-
 .bloqueEmpezadas {
 	padding: 0.4em;
 }
@@ -68,7 +66,7 @@
 	padding: 0.4em;
 }
 
-.letras{
+.letras {
 	float: left;
 	padding: 0.8em;
 }
@@ -77,12 +75,20 @@
 	padding-right: 1.5em;
 }
 
-.seriesInicial{
-	float: left;
+.listadoSeriesInicial {
+	float: bottom;
+	text-align: left;
+	padding-top: 3em;
 }
 
-.abajo{
-	position: absolute; 
-	bottom:0;
+.botonAgregar {
+	position: absolute;
+	margin-left: 4em;
+	float: right;
+}
+
+.abajo {
+	position: absolute;
+	bottom: 0;
 	margin-bottom: 3em;
 }

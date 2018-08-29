@@ -5,13 +5,20 @@
 
     </div>
 
-    <div class="seriesInicial">
-        {{seriesInicial}}
+    <div class="listadoSeriesInicial">
+        <li ng-repeat="serie in seriesInicial">
+            <a>{{serie.nombreSerie}}</a>
+            <a class="botonAgregar" ng-click="agregaPendientes(serie)" href> Agregar</a>
+        </li>
     </div>
 
 
+
+
+
+    
     <div class="abajo">
-        <p> Todas las series de la plataforma: </p>
+        <p> Todas las series de la plataforma actualmente: </p>
         <li ng-repeat="serie in series">
             {{serie.nombreSerie}}
         </li>

@@ -42,7 +42,7 @@ polaflixApp.controller('muestraSeriesPrincipal', function ($scope, $http, servic
 
 polaflixApp.controller('controllerAgregarSerie', function ($scope, $http) {
 
-  $scope.letras=['A','B','C'];
+  $scope.letras=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
   $http.get('http://localhost:8080/series').
     then(function (response) {
@@ -57,8 +57,18 @@ polaflixApp.controller('controllerAgregarSerie', function ($scope, $http) {
         $scope.seriesInicial = response.data;
       });
 
-  };
-  
+  };  
+
+  $scope.agregaPendientes = function(serie) {
+
+    //TODO hacer logica para que se agregue a pendientes: LLAMADA POST
+
+
+
+
+
+
+};
 
 });//fin controllerAgregarSerie
 
