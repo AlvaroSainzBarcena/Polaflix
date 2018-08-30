@@ -18,12 +18,11 @@
     <ul class="contenidoPendientes">
         <div ng-controller="muestraSeriesPrincipal">
             <li ng-repeat="serie in seriesPendientes">
-                <a>{{serie.nombreSerie}}</a>
+              <a href="#!VerSerie" ng-click="verSerieFun(serie)"> {{serie.nombreSerie}}</a>
             </li>
         </div>
     </ul>
   </div>
-
 
   <div class="bloqueTerminadas">
     <div class="terminadas">
@@ -32,7 +31,7 @@
     <ul class="contenidoTerminadas">
        <div ng-controller="muestraSeriesPrincipal"> 
           <li ng-repeat="serie in seriesTerminadas">
-            <a>{{serie.nombreSerie}}</a>
+            <a href="#!VerSerie" ng-click="verSerieFun(serie)"> {{serie.nombreSerie}}</a>
           </li>
        </div>
     </ul>

@@ -2,23 +2,33 @@
 
     <div class="letras" ng-repeat="letra in letras">
         <a ng-click="muestraSeriesInicial(letra)" href> {{letra}}</a>
-
     </div>
+
+    <form ng-submit="submit()" class="buscador">
+        <input class="busca" type="text" ng-model="serieBuscada">
+        <input type="submit" id="submit" value="Submit" />
+    </form>
+
+     <!-- Esto da mal porque se muestran las dos sinopsis de la misma serie. Corregir ¿Hacer en otro controlador? -->
+    <p ng-repeat="s in seriesInicialBuscadas">
+        <a ng-click="mostrarSinopsis(s)" href>{{s.nombreSerie}}</a>
+        <a class="botonAgregar" ng-click="agregaPendientes(s)" href> Agregar</a>
+        <p class=sinopsis ng-hide="sinopsis == ''">{{sinopsis}}</p>
+    </p>
+    <!-- Esto da mal porque se muestran las dos sinopsis de la misma serie. Corregir -->
+
 
     <div class="listadoSeriesInicial">
-        <li ng-repeat="serie in seriesInicial">
-            <a>{{serie.nombreSerie}}</a>
+        <p ng-repeat="serie in seriesInicial">
+            <a ng-click="mostrarSinopsis(serie)" href>{{serie.nombreSerie}}</a>
             <a class="botonAgregar" ng-click="agregaPendientes(serie)" href> Agregar</a>
-        </li>
+            <p class=sinopsis ng-hide="sinopsis == ''">{{sinopsis}}</p>
+        </p>
     </div>
 
 
-
-
-
-    
     <div class="abajo">
-        <p> Todas las series de la plataforma actualmente: </p>
+        <p> [INFORMATIVO] Todas las series de la plataforma almacenadas en la base de datos son: </p>
         <li ng-repeat="serie in series">
             {{serie.nombreSerie}}
         </li>

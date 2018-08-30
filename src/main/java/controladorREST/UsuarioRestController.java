@@ -83,6 +83,7 @@ public class UsuarioRestController{
 
 	// Anhade una serie pendiente al usuario
 	@RequestMapping(value="seriesPendientes/{idSerie}", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:8000")
 	public Usuario anhadePendiente(@PathVariable String nombreUsuario, @PathVariable long idSerie) {
 		this.validaUsuario(nombreUsuario);
 
@@ -111,6 +112,7 @@ public class UsuarioRestController{
 
 	// Anhade una serie empezada al usuario
 	@RequestMapping(value="seriesEmpezadas/{idSerie}", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:8000")
 	public Usuario anhadeEmpezada(@PathVariable String nombreUsuario, @PathVariable long idSerie) {
 		this.validaUsuario(nombreUsuario);
 
@@ -139,6 +141,7 @@ public class UsuarioRestController{
 	
 	// Anhade una serie terminada al usuario
 	@RequestMapping(value="seriesTerminadas/{idSerie}", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:8000")
 	public Usuario anhadeTerminada(@PathVariable String nombreUsuario, @PathVariable long idSerie) {
 		this.validaUsuario(nombreUsuario);
 
@@ -167,6 +170,7 @@ public class UsuarioRestController{
 	
 	// Se ejecuta cuando un usuario visualiza un capitulo
 	@RequestMapping(value="/series/{idSerie}/temporadas/{numTemp}/visualizarCapitulo/{numCap}", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:8000")
 	public boolean verCapitulo(@PathVariable String nombreUsuario, @PathVariable long idSerie, 
 			@PathVariable int numTemp, @PathVariable int numCap) {
 		

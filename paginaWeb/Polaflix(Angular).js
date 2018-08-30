@@ -12,7 +12,7 @@ polaflixApp.controller('userController', function ($scope, $http) {
 
 polaflixApp.controller('muestraSeriesPrincipal', function ($scope, $http, servicioVerSerie) {
 
-  $http.get('http://localhost:8080/series').
+  $http.get('http://localhost:8080//usuarios/' + user + '/seriesEmpezadas').
     then(function (response) {
       $scope.seriesEmpezadas = response.data;
     });
@@ -23,18 +23,18 @@ polaflixApp.controller('muestraSeriesPrincipal', function ($scope, $http, servic
   $http.get('http://localhost:8080/usuarios/' + user + '/seriesTerminadas').
     then(function (response) {
       $scope.seriesTerminadas = response.data;
-    }); 
+    });
 
-    $scope.verSerieFun = function(serie) {
+  $scope.verSerieFun = function (serie) {
 
-      serieSelec=serie;
+    serieSelec = serie;
 
   };
 
   // Metodo que comprueba si se ha modificado la variable serieSelec. En tal caso, actualiza su valor para que lo lea
   // el router VerSerie.html desde la variable de scope
-  $scope.$watch('serieSelec', function(){
-    $scope.serieSelec=serieSelec;
+  $scope.$watch('serieSelec', function () {
+    $scope.serieSelec = serieSelec;
   });
 
 });// fin controlador muestraSeriesPrincipal
@@ -42,33 +42,61 @@ polaflixApp.controller('muestraSeriesPrincipal', function ($scope, $http, servic
 
 polaflixApp.controller('controllerAgregarSerie', function ($scope, $http) {
 
-  $scope.letras=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  $scope.letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   $http.get('http://localhost:8080/series').
     then(function (response) {
       $scope.series = response.data;
     });
 
-    // funcion para mostrar las series con la inicial pasada por parametro
-    $scope.muestraSeriesInicial = function(inicial) {
+  // funcion para mostrar las series con la inicial pasada por parametro
+  $scope.muestraSeriesInicial = function (inicial) {
 
-      $http.get('http://localhost:8080/series/inicial/'+inicial).
+    $http.get('http://localhost:8080/series/inicial/' + inicial).
       then(function (response) {
         $scope.seriesInicial = response.data;
       });
 
-  };  
+    $scope.sinopsis = null;// para que se borre la sinopsis de la serie seleccionada enteriormente
+  };
 
-  $scope.agregaPendientes = function(serie) {
+  //Funcion que asigna la sinopsis de la serie
+  $scope.mostrarSinopsis = function (serie) {
 
-    //TODO hacer logica para que se agregue a pendientes: LLAMADA POST
+    $scope.sinopsis = serie.sinopsis;
 
+  }
 
+  //Funcion que agrega la serie a la lista de pendietnes
+  //TODO ¡¡ Preguntar a Pablo, me da error 500 internal server error al hacer la llamada POST!
+  $scope.agregaPendientes = function (serie) {
 
+    var idSerie = serie.id;
 
+    $http.post('http://localhost:8080/usuarios/' + user + '/seriesPendientes/' + idSerie).
+      then(function (response) {
+        console.log(response);
+      });
+  };
 
+  $scope.serieBuscada = "Escribe la serie...";
 
-};
+  //funcion que devuelve la lista de series cuya inicial coincide con la serie escrita
+  $scope.submit = function () {
+
+    var i;
+    for (i = 0; i < $scope.series.length; i++) { // revisar el bucle, no devuelve las series
+      if (series[i].nombreSerie.localeCompare($scope.serieBuscada)) {
+        var inicial = $scope.serieBuscada.charAt(0);
+        $http.get('http://localhost:8080/series/inicial/' + inicial).
+          then(function (response) {
+            $scope.seriesInicialBuscadas = response.data;
+          });
+      }
+    }
+
+  }
+
 
 });//fin controllerAgregarSerie
 
@@ -94,11 +122,11 @@ polaflixApp.config(function ($routeProvider) {
     });
 });
 
- 
+
 // Servicio que inicializa y guarda en memoria la serie elegida en la ventana principal del usuario para pasarla
 // al router verSerie
 polaflixApp.factory('servicioVerSerie', function () {
-  serieSelec=null;
+  serieSelec = null;
   return serieSelec;
 });
 
