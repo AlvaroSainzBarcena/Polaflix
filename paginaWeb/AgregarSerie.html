@@ -6,16 +6,16 @@
 
     <form ng-submit="submit()" class="buscador">
         <input class="busca" type="text" ng-model="serieBuscada">
-        <input type="submit" id="submit" value="Submit" />
+        <input type="submit" id="submit" value="Buscar" />
     </form>
 
-     <!-- Esto da mal porque se muestran las dos sinopsis de la misma serie. Corregir ¿Hacer en otro controlador? -->
+     <!-- Esto da mal porque se muestran las dos sinopsis de la misma serie.
     <p ng-repeat="s in seriesInicialBuscadas">
         <a ng-click="mostrarSinopsis(s)" href>{{s.nombreSerie}}</a>
         <a class="botonAgregar" ng-click="agregaPendientes(s)" href> Agregar</a>
         <p class=sinopsis ng-hide="sinopsis == ''">{{sinopsis}}</p>
     </p>
-    <!-- Esto da mal porque se muestran las dos sinopsis de la misma serie. Corregir -->
+    Esto da mal porque se muestran las dos sinopsis de la misma serie. Corregir -->
 
 
     <div class="listadoSeriesInicial">

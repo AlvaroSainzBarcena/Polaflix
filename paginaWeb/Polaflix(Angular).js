@@ -20,7 +20,7 @@ polaflixApp.controller('muestraSeriesPrincipal', function ($scope, $http, servic
     then(function (response) {
       $scope.seriesPendientes = response.data;
     });
-  $http.get('http://localhost:8080/usuarios/' + user + '/seriesTerminadas').
+  $http.get('http://localhost:8080/series'). // A modo de prueba, todas las series se mostraran como terminadas.
     then(function (response) {
       $scope.seriesTerminadas = response.data;
     });
@@ -41,7 +41,7 @@ polaflixApp.controller('muestraSeriesPrincipal', function ($scope, $http, servic
 
 
 polaflixApp.controller('controllerAgregarSerie', function ($scope, $http) {
-
+  
   $scope.letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   $http.get('http://localhost:8080/series').
@@ -79,14 +79,14 @@ polaflixApp.controller('controllerAgregarSerie', function ($scope, $http) {
       });
   };
 
-  $scope.serieBuscada = "Escribe la serie...";
+  $scope.serieBuscada = "";
 
   //funcion que devuelve la lista de series cuya inicial coincide con la serie escrita
   $scope.submit = function () {
 
     var i;
     for (i = 0; i < $scope.series.length; i++) { // revisar el bucle, no devuelve las series
-      if (series[i].nombreSerie.localeCompare($scope.serieBuscada)) {
+      if ($scope.series[i].nombreSerie.localeCompare($scope.serieBuscada)) {
         var inicial = $scope.serieBuscada.charAt(0);
         $http.get('http://localhost:8080/series/inicial/' + inicial).
           then(function (response) {
